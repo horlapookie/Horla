@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
 
@@ -81,13 +83,13 @@ export default function Contact() {
           <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
             If you have a specific issue or complaint, please use our dedicated complaints form
           </p>
-          <a
+          <Link
             href="/complaints"
             className="inline-block px-6 py-3 rounded-lg font-semibold hover:opacity-80 transition-opacity"
             style={{ backgroundColor: 'var(--accent-color)', color: 'white' }}
           >
             Submit a Complaint
-          </a>
+          </Link>
         </motion.div>
       </div>
     </Layout>

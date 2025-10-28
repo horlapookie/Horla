@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import Image from 'next/image'; // Import Next.js Image component
 import { ForumPost } from '../types';
 
 export default function Forum() {
@@ -39,7 +40,7 @@ export default function Forum() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const uploads = [];
     if (newPost.imageUrl) uploads.push({ type: 'image', url: newPost.imageUrl });
     if (newPost.videoUrl) uploads.push({ type: 'video', url: newPost.videoUrl });
@@ -132,7 +133,7 @@ export default function Forum() {
             >
               {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
-            
+
             <div className="space-y-2">
               <p className="font-semibold">Optional Attachments:</p>
               <input
@@ -205,13 +206,19 @@ export default function Forum() {
                     {post.uploads.map((upload, i) => (
                       <div key={i}>
                         {upload.type === 'image' && (
-                          <img src={upload.url} alt="Post attachment" className="max-w-md rounded" />
+                          <Image
+                            src={upload.url}
+                            alt="Post attachment"
+                            width={800}
+                            height={600}
+                            className="max-w-full rounded"
+                          />
                         )}
                         {upload.type === 'video' && (
                           <video src={upload.url} controls className="max-w-md rounded" />
                         )}
                         {upload.type === 'link' && (
-                          <a href={upload.url} target="_blank" rel="noopener noreferrer" 
+                          <a href={upload.url} target="_blank" rel="noopener noreferrer"
                              style={{ color: 'var(--accent-color)' }}>
                             🔗 {upload.url}
                           </a>

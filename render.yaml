@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: horlapookie-support
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: ADMIN_PASSKEY
+        sync: false
+      - key: NODE_ENV
+        value: production
